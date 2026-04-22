@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知服 ZhiFu · 专业文档与学术服务</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f1923;
+  --deep: #1a2d45;
+  --mid: #2a4a6b;
+  --accent: #e8a83e;
+  --accent2: #f0c870;
+  --cream: #faf7f2;
+  --warm: #f5efe6;
+  --muted: #8a9bb0;
+  --light: #e8eef4;
+  --white: #ffffff;
+  --grad: linear-gradient(135deg, #1a2d45 0%, #0f3460 50%, #1a2d45 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ========== NAV ========== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 68px;
+  background: rgba(15, 25, 35, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(232, 168, 62, 0.15);
+  transition: all 0.3s;
+}
+
+.logo {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  background: var(--accent);
+  color: var(--ink) !important;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px); }
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  background: var(--grad);
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding: 80px 5vw 0;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 60% at 80% 50%, rgba(232,168,62,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 80% at 10% 80%, rgba(42,74,107,0.4) 0%, transparent 60%);
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 700px;
+  animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,168,62,0.15);
+  border: 1px solid rgba(232,168,62,0.4);
+  color: var(--accent2);
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.08em;
+}
+
+.hero h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+  position: relative;
+}
+
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 560px;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.25s;
+  border: none; cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.btn-primary:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(232,168,62,0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: all 0.25s;
+  cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.08);
+}
+
+.hero-stats {
+  display: flex; gap: 3rem; margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+
+.stat-item {}
+
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+}
+
+.hero-visual {
+  position: absolute;
+  right: 5vw; top: 50%; transform: translateY(-50%);
+  width: min(480px, 42vw);
+  animation: fadeUp 0.9s 0.15s ease both;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(232,168,62,0.3), transparent 60%);
+  z-index: -1;
+}
+
+.card-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.card-dots { display: flex; gap: 6px; }
+.card-dots span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.cd1 { background: #ff5f57; }
+.cd2 { background: #febc2e; }
+.cd3 { background: #28c840; }
+
+.card-title { color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-left: 4px; }
+
+.service-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin: 4px;
+  font-weight: 500;
+}
+
+.tag-blue { background: rgba(42,74,107,0.6); color: #a8c8f0; border: 1px solid rgba(168,200,240,0.2); }
+.tag-gold { background: rgba(232,168,62,0.15); color: var(--accent); border: 1px solid rgba(232,168,62,0.3); }
+.tag-green { background: rgba(40,200,100,0.1); color: #6ee7a0; border: 1px solid rgba(110,231,160,0.2); }
+.tag-rose { background: rgba(240,80,120,0.1); color: #f4a0b8; border: 1px solid rgba(244,160,184,0.2); }
+
+.service-tags { margin-bottom: 1.5rem; }
+
+.progress-row {
+  margin-bottom: 0.8rem;
+}
+
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+  animation: fillBar 1.5s 1s ease both;
+}
+
+@keyframes fillBar {
+  from { width: 0 !important; }
+}
+
+/* ========== SECTIONS ========== */
+section {
+  padding: 100px 5vw;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 560px;
+  font-weight: 300;
+}
+
+/* ========== SERVICES ========== */
+#services { background: var(--cream); }
+
+.services-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+
+.filter-tabs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.filter-tab {
+  padding: 7px 16px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  border: 1px solid var(--light);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.filter-tab.active,
+.filter-tab:hover {
+  background: var(--deep);
+  color: var(--white);
+  border-color: var(--deep);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--light);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  border-color: transparent;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.icon-blue { background: rgba(26,45,69,0.08); }
+.icon-gold { background: rgba(232,168,62,0.12); }
+.icon-green { background: rgba(40,160,100,0.1); }
+.icon-purple { background: rgba(120,80,200,0.1); }
+
+.service-card h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.service-tags-mini {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+}
+
+.mini-tag {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--cream);
+  color: var(--muted);
+  border: 1px solid var(--light);
+}
+
+.service-price {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.price-from { font-size: 0.78rem; color: var(--muted); }
+.price-num { font-size: 1.3rem; font-weight: 700; color: var(--accent); font-family: 'DM Serif Display', serif; }
+.price-unit { font-size: 0.8rem; color: var(--muted); }
+
+.card-arrow {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;
+  color: var(--muted);
+}
+
+.service-card:hover .card-arrow {
+  background: var(--accent);
+  color: var(--white);
+}
+
+/* ========== AUDIENCE ========== */
+#audience { background: var(--deep); }
+
+#audience .section-title { color: var(--white); }
+#audience .section-sub { color: rgba(255,255,255,0.55); }
+#audience .section-label { color: var(--accent); }
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.audience-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.audience-card::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.04;
+  transition: all 0.4s;
+}
+
+.audience-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(232,168,62,0.25);
+  transform: translateY(-4px);
+}
+
+.audience-card:hover::after {
+  opacity: 0.1;
+  transform: scale(1.5);
+}
+
+.aud-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+.audience-card h3 {
+  color: var(--white);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.audience-card p {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.aud-services {
+  display: flex; flex-direction: column; gap: 5px;
+}
+
+.aud-service {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  display: flex; align-items: center; gap: 6px;
+}
+
+.aud-service::before {
+  content: '→';
+  color: var(--accent);
+  font-size: 0.7rem;
+}
+
+/* ========== CASES ========== */
+#cases { background: var(--warm); }
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.case-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--light);
+  transition: all 0.3s;
+}
+
+.case-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  transform: translateY(-4px);
+}
+
+.case-visual {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-blue { background: linear-gradient(135deg, #1a2d45, #2a4a6b); }
+.cv-gold { background: linear-gradient(135deg, #3d2c0a, #6b4c1a); }
+.cv-green { background: linear-gradient(135deg, #0a2d1a, #1a5a3a); }
+
+.before-after {
+  position: absolute; bottom: 12px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 8px;
+}
+
+.ba-label {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.ba-before { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
+.ba-after { background: var(--accent); color: var(--ink); }
+
+.case-body { padding: 1.5rem; }
+
+.case-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.case-card h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.case-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.case-result {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  background: var(--cream);
+  border-radius: 8px;
+}
+
+.result-icon { font-size: 1rem; }
+.result-text { font-size: 0.82rem; color: var(--mid); font-weight: 500; }
+
+/* ========== PRICING ========== */
+#pricing { background: var(--cream); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+  max-width: 1100px;
+}
+
+.pricing-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid var(--light);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.pricing-card.featured {
+  background: var(--deep);
+  border-color: transparent;
+  box-shadow: 0 30px 80px rgba(26,45,69,0.25);
+  transform: scale(1.03);
+}
+
+.pricing-card:hover:not(.featured) {
+  border-color: var(--mid);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.plan-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.featured .plan-name { color: rgba(255,255,255,0.5); }
+
+.plan-price {
+  display: flex; align-items: baseline; gap: 4px;
+  margin-bottom: 0.3rem;
+}
+
+.plan-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.featured .plan-num { color: var(--accent); }
+
+.plan-unit { font-size: 0.85rem; color: var(--muted); }
+.featured .plan-unit { color: rgba(255,255,255,0.5); }
+
+.plan-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--light);
+  line-height: 1.6;
+}
+
+.featured .plan-desc {
+  color: rgba(255,255,255,0.5);
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+
+.plan-features { list-style: none; margin-bottom: 2rem; }
+
+.plan-features li {
+  font-size: 0.88rem;
+  color: var(--mid);
+  padding: 6px 0;
+  display: flex; align-items: flex-start; gap: 8px;
+  line-height: 1.5;
+}
+
+.featured .plan-features li { color: rgba(255,255,255,0.75); }
+
+.check {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(232,168,62,0.15);
+  color: var(--accent);
+  font-size: 0.65rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btn-plan {
+  display: block;
+  text-align: center;
+  padding: 13px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+  font-family: 'Noto Sans SC', sans-serif;
+  width: 100%;
+}
+
+.btn-plan-outline {
+  background: transparent;
+  border: 2px solid var(--light);
+  color: var(--mid);
+}
+
+.btn-plan-outline:hover {
+  border-color: var(--mid);
+  background: var(--cream);
+}
+
+.btn-plan-gold {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn-plan-gold:hover {
+  background: var(--accent2);
+  box-shadow: 0 8px 30px rgba(232,168,62,0.4);
+}
+
+/* ========== PROCESS ========== */
+#process { background: var(--white); }
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 36px; left: 12%; right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+  opacity: 0.3;
+}
+
+.step {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.step-num {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin: 0 auto 1.2rem;
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+.step:hover .step-num {
+  background: var(--deep);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.step h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.step p {
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ========== TESTIMONIALS ========== */
+#reviews { background: var(--cream); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.review-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--light);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.review-card:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+  transform: translateY(-3px);
+}
+
+.quote-mark {
+  font-family: 'DM Serif Display', serif;
+  font-size: 5rem;
+  color: var(--accent);
+  opacity: 0.15;
+  position: absolute;
+  top: 0.5rem; left: 1.5rem;
+  line-height: 1;
+}
+
+.review-text {
+  font-size: 0.92rem;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+}
+
+.review-author {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+
+.author-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--deep);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+  flex-shrink: 0;
+}
+
+.author-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.author-info {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.stars {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+/* ========== CONTACT / CTA ========== */
+#contact {
+  background: var(--grad);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse 50% 80% at 50% 100%, rgba(232,168,62,0.1) 0%, transparent 60%);
+}
+
+#contact .section-title { color: var(--white); }
+#contact .section-sub { color: rgba(255,255,255,0.6); margin: 1rem auto 3rem; }
+
+.contact-options {
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  position: relative; z-index: 1;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 2rem;
+  min-width: 200px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.contact-card:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(232,168,62,0.4);
+  transform: translateY(-4px);
+}
+
+.cc-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+
+.cc-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.08em;
+}
+
+.cc-value {
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.form-section {
+  position: relative; z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: rgba(232,168,62,0.5);
+}
+
+.form-group select option { background: var(--deep); }
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: var(--ink);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: all 0.25s;
+  margin-top: 0.5rem;
+}
+
+.form-submit:hover {
+  background: var(--accent2);
+  box-shadow: 0 8px 30px rgba(232,168,62,0.4);
+  transform: translateY(-2px);
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: var(--ink);
+  padding: 3rem 5vw 2rem;
+}
+
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 2rem; flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand .logo { margin-bottom: 0.5rem; }
+
+.footer-desc {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.35);
+  max-width: 260px;
+  line-height: 1.6;
+}
+
+.footer-links h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.8rem;
+}
+
+.footer-links ul { list-style: none; }
+
+.footer-links li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.25);
+}
+
+.footer-icp {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== MOBILE ========== */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+@media (max-width: 900px) {
+  .hero-visual { display: none; }
+  .hero-content { max-width: 100%; }
+  .hero h1 { font-size: 2.6rem; }
+
+  .services-header { grid-template-columns: 1fr; }
+  .filter-tabs { justify-content: flex-start; }
+
+  .process-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .process-steps::before { display: none; }
+
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+
+  section { padding: 70px 5vw; }
+
+  .process-steps { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+
+  .pricing-card.featured { transform: scale(1); }
+}
+
+/* ========== FLOATING CONTACT ========== */
+.float-contact {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  z-index: 90;
+  display: flex; flex-direction: column; gap: 0.7rem;
+  align-items: flex-end;
+}
+
+.float-btn {
+  background: var(--accent);
+  color: var(--ink);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(232,168,62,0.4);
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+
+.float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(232,168,62,0.5);
+}
+
+.float-icon-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--deep);
+  color: var(--accent);
+  border: 2px solid rgba(232,168,62,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: all 0.25s;
+}
+
+.float-icon-btn:hover {
+  background: var(--mid);
+  border-color: var(--accent);
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-dot"></span>
+    知服
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="scrollTo('services')">服务项目</a></li>
+    <li><a onclick="scrollTo('audience')">适合人群</a></li>
+    <li><a onclick="scrollTo('cases')">服务案例</a></li>
+    <li><a onclick="scrollTo('pricing')">定价方案</a></li>
+    <li><a onclick="scrollTo('contact')" class="nav-cta">立即咨询</a></li>
+  </ul>
+  <button class="mobile-menu-btn" onclick="scrollTo('contact')">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">✦ AI 辅助 · 人工审核 · 快速交付</div>
+    <h1>让<em>文档难题</em><br>不再是难题</h1>
+    <p>专业的学术与职场文档服务平台。PDF转换、论文排版、录音转文字、翻译、图表设计——一站解决，省时省力。</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="scrollTo('services')">查看服务项目 →</button>
+      <button class="btn-secondary" onclick="scrollTo('contact')">免费咨询</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">2,000+</span>
+        <span class="stat-label">服务案例</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4.9</span>
+        <span class="stat-label">用户评分</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">24h</span>
+        <span class="stat-label">最快交付</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-header">
+        <div class="card-dots">
+          <span class="cd1"></span>
+          <span class="cd2"></span>
+          <span class="cd3"></span>
+        </div>
+        <span class="card-title">当前服务状态</span>
+      </div>
+      <div class="service-tags">
+        <span class="service-tag tag-blue">📄 PDF转Word</span>
+        <span class="service-tag tag-gold">✍️ 论文格式调整</span>
+        <span class="service-tag tag-green">🎙️ 录音转文字</span>
+        <span class="service-tag tag-rose">🌐 专业翻译</span>
+        <span class="service-tag tag-blue">🎨 图表设计</span>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>今日已完成</span><span>12 单</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>客户满意度</span><span>99%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>平均交付</span><span>18小时</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">服务项目</div>
+      <h2 class="section-title">我们能帮你做什么</h2>
+      <p class="section-sub">覆盖学术、职场、求职全场景，AI 加速 + 人工把关，质量有保障。</p>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterServices('all', this)">全部</button>
+      <button class="filter-tab" onclick="filterServices('doc', this)">文档处理</button>
+      <button class="filter-tab" onclick="filterServices('audio', this)">音视频</button>
+      <button class="filter-tab" onclick="filterServices('design', this)">设计排版</button>
+      <button class="filter-tab" onclick="filterServices('lang', this)">语言翻译</button>
+    </div>
+  </div>
+
+  <div class="services-grid" id="services-grid">
+
+    <div class="service-card reveal" data-cat="doc">
+      <div class="service-icon icon-blue">📄</div>
+      <h3>PDF 转 Word</h3>
+      <p>精准还原排版格式，表格、图片、公式一并处理，可编辑输出。支持中英文、扫描件OCR识别。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">学术论文</span>
+        <span class="mini-tag">合同文件</span>
+        <span class="mini-tag">扫描件</span>
+        <span class="mini-tag">多语言</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥15</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="doc">
+      <div class="service-icon icon-gold">📝</div>
+      <h3>论文格式调整</h3>
+      <p>严格按照学校/期刊模板要求排版，页眉页脚、目录、参考文献、图表编号全面整理。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">毕业论文</span>
+        <span class="mini-tag">期刊投稿</span>
+        <span class="mini-tag">开题报告</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥39</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="audio">
+      <div class="service-icon icon-green">🎙️</div>
+      <h3>录音转文字</h3>
+      <p>会议记录、课堂录音、访谈音频，精准转录并整理，支持多人对话标注、时间轴标记。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">会议纪要</span>
+        <span class="mini-tag">访谈记录</span>
+        <span class="mini-tag">课堂笔记</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥20</span>
+          <span class="price-unit"> / 小时</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="lang">
+      <div class="service-icon icon-purple">🌐</div>
+      <h3>专业翻译</h3>
+      <p>学术论文、商务合同、证件资料多语种互译。母语级校对，地道表达，支持英日韩法德等主流语言。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">英文</span>
+        <span class="mini-tag">日文</span>
+        <span class="mini-tag">韩文</span>
+        <span class="mini-tag">法德西</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥0.12</span>
+          <span class="price-unit"> / 字</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="design">
+      <div class="service-icon icon-gold">🎨</div>
+      <h3>图表 & 作图</h3>
+      <p>数据可视化图表、论文配图、信息图、流程图、PPT美化。专业设计风格，符合学术规范。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">数据图表</span>
+        <span class="mini-tag">PPT美化</span>
+        <span class="mini-tag">论文配图</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥29</span>
+          <span class="price-unit"> / 图</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="audio">
+      <div class="service-icon icon-blue">🎬</div>
+      <h3>视频字幕制作</h3>
+      <p>视频内容转录 + 双语字幕制作，SRT/ASS格式输出，学术讲座、课程视频均可处理。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">双语字幕</span>
+        <span class="mini-tag">课程视频</span>
+        <span class="mini-tag">学术讲座</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥35</span>
+          <span class="price-unit"> / 小时</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="section-label">适合人群</div>
+  <h2 class="section-title">为每种需求量身定制</h2>
+  <p class="section-sub">无论你是在写论文、准备简历还是处理工作文件，我们都有对应的解决方案。</p>
+
+  <div class="audience-grid">
+    <div class="audience-card reveal">
+      <span class="aud-emoji">🎓</span>
+      <h3>在校学生</h3>
+      <p>本科毕业论文、研究生期刊投稿、课程作业格式整理，论文季不再焦虑。</p>
+      <div class="aud-services">
+        <span class="aud-service">论文格式调整</span>
+        <span class="aud-service">PDF转Word</span>
+        <span class="aud-service">翻译润色</span>
+        <span class="aud-service">数据图表制作</span>
+      </div>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="aud-emoji">💼</span>
+      <h3>职场人士</h3>
+      <p>会议纪要整理、报告翻译、PPT美化、合同文件格式转换，提升工作效率。</p>
+      <div class="aud-services">
+        <span class="aud-service">录音转文字</span>
+        <span class="aud-service">PPT设计美化</span>
+        <span class="aud-service">商务翻译</span>
+        <span class="aud-service">视频字幕</span>
+      </div>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="aud-emoji">🚀</span>
+      <h3>求职者</h3>
+      <p>简历排版优化、英文简历翻译、求职材料整理，为重要机会做好准备。</p>
+      <div class="aud-services">
+        <span class="aud-service">简历格式优化</span>
+        <span class="aud-service">英文翻译</span>
+        <span class="aud-service">作品集排版</span>
+      </div>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="aud-emoji">📚</span>
+      <h3>老师 & 教育工作者</h3>
+      <p>课件制作、试卷排版、讲座录音整理，让教学材料更专业、更高效。</p>
+      <div class="aud-services">
+        <span class="aud-service">课件制作</span>
+        <span class="aud-service">录音转文字</span>
+        <span class="aud-service">文档整理</span>
+        <span class="aud-service">图表设计</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="section-label">服务案例</div>
+  <h2 class="section-title">真实案例，看得见的效果</h2>
+  <p class="section-sub">每一单都认真对待，以下是部分匿名处理后的真实客户案例。</p>
+
+  <div class="cases-grid">
+    <div class="case-card reveal">
+      <div class="case-visual cv-blue">
+        <span>📄 → 📝</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">扫描PDF</span>
+          <span class="ba-label ba-after">可编辑Word</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">文档转换</div>
+        <h3>80页扫描版合同 → 可编辑Word</h3>
+        <p>客户提供年代久远的扫描合同，需要编辑修改。通过OCR识别 + 人工校对，完整还原全部内容，包含表格与签名框。</p>
+        <div class="case-result">
+          <span class="result-icon">⏱️</span>
+          <span class="result-text">8小时完成 · 准确率 99.2%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-gold">
+        <span>📑 ✨</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">格式混乱</span>
+          <span class="ba-label ba-after">标准排版</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">论文排版</div>
+        <h3>研究生毕业论文格式全面调整</h3>
+        <p>82页毕业论文，按学校最新要求重新调整目录、页眉页脚、参考文献格式、图表编号，一次性通过审核。</p>
+        <div class="case-result">
+          <span class="result-icon">✅</span>
+          <span class="result-text">次日交付 · 一次性审核通过</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-green">
+        <span>🎙️ → 📋</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">3小时录音</span>
+          <span class="ba-label ba-after">整理文档</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">录音转写</div>
+        <h3>学术访谈录音 → 结构化文字稿</h3>
+        <p>3小时、4人参与的学术访谈录音，区分发言人并整理成结构化文档，便于后续分析与引用。</p>
+        <div class="case-result">
+          <span class="result-icon">🎯</span>
+          <span class="result-text">24小时内交付 · 含时间轴标注</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div style="text-align:center; max-width:600px; margin:0 auto 0;">
+    <div class="section-label" style="justify-content:center;">服务流程</div>
+    <h2 class="section-title">4步完成，简单高效</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <h3>提交需求</h3>
+      <p>填写表单或微信联系，说明文件类型和具体要求</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <h3>报价确认</h3>
+      <p>30分钟内提供明确报价和预计交付时间</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <h3>专业处理</h3>
+      <p>AI辅助处理 + 人工审核，确保质量达标</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <h3>验收交付</h3>
+      <p>按时交付成果，提供免费修改至满意</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div>
+    <div class="section-label">定价方案</div>
+    <h2 class="section-title">透明定价，无隐藏收费</h2>
+    <p class="section-sub">单次付费或套餐均可，量大另议。所有方案均含至少一次免费修改。</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="plan-name">基础服务</div>
+      <div class="plan-price">
+        <span class="plan-num">¥15</span>
+        <span class="plan-unit">起</span>
+      </div>
+      <p class="plan-desc">单次按需付费，适合偶尔有文档处理需求的用户</p>
+      <ul class="plan-features">
+        <li><span class="check">✓</span>PDF转Word（每份）</li>
+        <li><span class="check">✓</span>基础格式整理</li>
+        <li><span class="check">✓</span>1次免费修改</li>
+        <li><span class="check">✓</span>48小时内交付</li>
+        <li><span class="check">✓</span>微信沟通</li>
+      </ul>
+      <button class="btn-plan btn-plan-outline" onclick="scrollTo('contact')">按需咨询</button>
+    </div>
+
+    <div class="pricing-card featured reveal">
+      <div class="featured-badge">🔥 最受欢迎</div>
+      <div class="plan-name">论文季套餐</div>
+      <div class="plan-price">
+        <span class="plan-num">¥199</span>
+        <span class="plan-unit">/ 套</span>
+      </div>
+      <p class="plan-desc">专为毕业季设计，一次搞定论文相关所有文档需求</p>
+      <ul class="plan-features">
+        <li><span class="check">✓</span>论文格式调整（一次）</li>
+        <li><span class="check">✓</span>PDF转Word（2份）</li>
+        <li><span class="check">✓</span>参考文献整理</li>
+        <li><span class="check">✓</span>图表制作（3张）</li>
+        <li><span class="check">✓</span>无限次修改至满意</li>
+        <li><span class="check">✓</span>优先24h内交付</li>
+        <li><span class="check">✓</span>专属客服</li>
+      </ul>
+      <button class="btn-plan btn-plan-gold" onclick="scrollTo('contact')">立即选择</button>
+    </div>
+
+    <div class="pricing-card reveal">
+      <div class="plan-name">职场月度包</div>
+      <div class="plan-price">
+        <span class="plan-num">¥299</span>
+        <span class="plan-unit">/ 月</span>
+      </div>
+      <p class="plan-desc">每月固定额度，适合有持续文档处理需求的职场人士</p>
+      <ul class="plan-features">
+        <li><span class="check">✓</span>录音转文字（5小时）</li>
+        <li><span class="check">✓</span>翻译（3000字）</li>
+        <li><span class="check">✓</span>文档转换（5份）</li>
+        <li><span class="check">✓</span>图表设计（2张）</li>
+        <li><span class="check">✓</span>未使用额度可滚存</li>
+        <li><span class="check">✓</span>24h响应</li>
+      </ul>
+      <button class="btn-plan btn-plan-outline" onclick="scrollTo('contact')">咨询定制</button>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:var(--muted);">
+    以上为参考起价，实际价格根据具体需求报价 · 大批量需求请联系洽谈
+  </p>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-label">用户好评</div>
+  <h2 class="section-title">他们说的</h2>
+  <p class="section-sub">来自真实客户的反馈，让你放心下单。</p>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">毕业论文交前一天才发现格式不对，联系后当晚就给我处理好了！目录、页眉、参考文献全部按学校模板来，老师直接通过，太感谢了。</p>
+      <div class="review-author">
+        <div class="author-avatar">林</div>
+        <div>
+          <div class="author-name">林同学</div>
+          <div class="author-info">研究生 · 论文格式调整</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">录音转写很准确，2小时的采访录音帮我整理成了结构化文档还区分了发言人，自己弄不知道要花多少时间，价格也很合理。</p>
+      <div class="review-author">
+        <div class="author-avatar">张</div>
+        <div>
+          <div class="author-name">张老师</div>
+          <div class="author-info">高校教师 · 录音转文字</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">英文简历翻译质量很高，不是那种机翻感，用词很地道。面试前最后一刻找到他们，当天就交付了，简历很加分。</p>
+      <div class="review-author">
+        <div class="author-avatar">王</div>
+        <div>
+          <div class="author-name">王同学</div>
+          <div class="author-info">求职者 · 简历翻译</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">数据图表做得很专业，样式符合SCI论文要求，导师一次性就通过了。沟通也很顺畅，提出修改意见能很快响应。</p>
+      <div class="review-author">
+        <div class="author-avatar">陈</div>
+        <div>
+          <div class="author-name">陈同学</div>
+          <div class="author-info">博士生 · 图表设计</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">月度包很划算，每个月的会议录音和文件翻译都交给他们，省了我们团队很多时间，专注做更重要的事。</p>
+      <div class="review-author">
+        <div class="author-avatar">刘</div>
+        <div>
+          <div class="author-name">刘经理</div>
+          <div class="author-info">职场用户 · 月度包</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">扫描件转Word真的没想到能做得这么准，80多页的古旧合同，字迹模糊的地方也尽量识别出来了，只有几个字需要我手动核对。</p>
+      <div class="review-author">
+        <div class="author-avatar">赵</div>
+        <div>
+          <div class="author-name">赵律师</div>
+          <div class="author-info">法律从业者 · PDF转Word</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center;">开始合作</div>
+  <h2 class="section-title">准备好了？来聊聊</h2>
+  <p class="section-sub">描述你的需求，30分钟内回复报价。首次咨询免费。</p>
+
+  <div class="contact-options" style="position:relative;z-index:1">
+    <a class="contact-card">
+      <span class="cc-icon">💬</span>
+      <div class="cc-label">微信咨询</div>
+      <div class="cc-value">扫码添加</div>
+    </a>
+    <a class="contact-card" href="mailto:hello@zhifu.example.com">
+      <span class="cc-icon">📧</span>
+      <div class="cc-label">邮件联系</div>
+      <div class="cc-value">hello@zhifu.com</div>
+    </a>
+    <a class="contact-card">
+      <span class="cc-icon">⏰</span>
+      <div class="cc-label">响应时间</div>
+      <div class="cc-value">工作日 9:00-22:00</div>
+    </a>
+  </div>
+
+  <div class="form-section reveal">
+    <h3 style="color:var(--white);font-family:'Noto Serif SC',serif;font-size:1.3rem;margin-bottom:1.5rem;">填写需求，快速报价</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>你的称呼</label>
+        <input type="text" placeholder="例：小李同学">
+      </div>
+      <div class="form-group">
+        <label>联系方式</label>
+        <input type="text" placeholder="微信号 / 邮箱">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>需要的服务</label>
+      <select>
+        <option value="">请选择服务类型</option>
+        <option>PDF 转 Word</option>
+        <option>论文格式调整</option>
+        <option>录音转文字</option>
+        <option>专业翻译</option>
+        <option>图表 & 作图</option>
+        <option>视频字幕制作</option>
+        <option>组合 / 其他</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>需求描述</label>
+      <textarea placeholder="请简单描述你的文件情况（如：毕业论文80页、需要按学校模板调整格式，希望3天内完成）"></textarea>
+    </div>
+    <button class="form-submit" onclick="handleSubmit()">提交需求，等待报价 →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:0.8rem;display:flex;">
+        <span class="logo-dot"></span>知服
+      </a>
+      <p class="footer-desc">专业的学术与职场文档服务，AI辅助 + 人工把关，让每一份文件都值得信赖。</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>服务</h4>
+      <ul>
+        <li><a onclick="scrollTo('services')">PDF转Word</a></li>
+        <li><a onclick="scrollTo('services')">论文格式调整</a></li>
+        <li><a onclick="scrollTo('services')">录音转文字</a></li>
+        <li><a onclick="scrollTo('services')">专业翻译</a></li>
+        <li><a onclick="scrollTo('services')">图表设计</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>了解更多</h4>
+      <ul>
+        <li><a onclick="scrollTo('cases')">服务案例</a></li>
+        <li><a onclick="scrollTo('pricing')">定价方案</a></li>
+        <li><a onclick="scrollTo('reviews')">用户评价</a></li>
+        <li><a onclick="scrollTo('process')">服务流程</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>联系我们</h4>
+      <ul>
+        <li><a>微信：zhifu_service</a></li>
+        <li><a href="mailto:hello@zhifu.com">邮件：hello@zhifu.com</a></li>
+        <li><a>工作时间：9:00-22:00</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 知服 ZhiFu · 保留所有权利</p>
+    <p class="footer-icp">粤ICP备XXXXXXXX号</p>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTON -->
+<div class="float-contact">
+  <a class="float-btn" onclick="scrollTo('contact')">
+    💬 免费咨询
+  </a>
+</div>
+
+<script>
+// Smooth scroll
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 68;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Service filter
+function filterServices(cat, btn) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.service-card').forEach(card => {
+    const cardCat = card.dataset.cat;
+    if (cat === 'all' || cardCat === cat) {
+      card.style.display = 'block';
+      card.style.animation = 'fadeUp 0.4s ease both';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Form submit
+function handleSubmit() {
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = '✅ 已提交！我们会尽快联系你';
+  btn.style.background = '#28c840';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = '提交需求，等待报价 →';
+    btn.style.background = '';
+    btn.disabled = false;
+  }, 4000);
+}
+
+// Hide float btn near contact section
+window.addEventListener('scroll', () => {
+  const contact = document.getElementById('contact');
+  const float = document.querySelector('.float-contact');
+  const rect = contact.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    float.style.opacity = '0';
+    float.style.pointerEvents = 'none';
+  } else {
+    float.style.opacity = '1';
+    float.style.pointerEvents = 'auto';
+  }
+});
+</script>
+</body>
+</html>

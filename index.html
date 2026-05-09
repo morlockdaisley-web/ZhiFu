@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>X  · 专业文档与学术服务</title>
+<title>X · 文档电商与数字服务平台</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
@@ -23,7 +23,22 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, textarea, select { font: inherit; }
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
 
 body {
   font-family: 'Noto Sans SC', sans-serif;
@@ -398,6 +413,7 @@ section {
   cursor: pointer;
   transition: all 0.2s;
   font-family: 'Noto Sans SC', sans-serif;
+  white-space: nowrap;
 }
 
 .filter-tab.active,
@@ -462,6 +478,7 @@ section {
   font-weight: 600;
   margin-bottom: 0.6rem;
   color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 .service-card p {
@@ -655,6 +672,7 @@ section {
   font-size: 1.05rem;
   margin-bottom: 0.5rem;
   color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 .case-card p {
@@ -924,6 +942,7 @@ section {
   position: relative;
   z-index: 1;
   margin-top: 0.5rem;
+  overflow-wrap: anywhere;
 }
 
 .review-author {
@@ -1002,6 +1021,20 @@ section {
   transform: translateY(-4px);
 }
 
+.qr-card {
+  min-width: 240px;
+}
+
+.qr-image {
+  width: 180px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  background: var(--white);
+  margin-bottom: 1rem;
+}
+
 .cc-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
 
 .cc-label {
@@ -1015,84 +1048,7 @@ section {
   color: var(--white);
   font-size: 0.95rem;
   font-weight: 500;
-}
-
-.form-section {
-  position: relative; z-index: 1;
-  max-width: 600px;
-  margin: 0 auto;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  padding: 2.5rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 6px;
-  letter-spacing: 0.05em;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
-  padding: 10px 14px;
-  color: var(--white);
-  font-size: 0.9rem;
-  font-family: 'Noto Sans SC', sans-serif;
-  transition: border-color 0.2s;
-  outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: rgba(232,168,62,0.5);
-}
-
-.form-group select option { background: var(--deep); }
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-.form-submit {
-  width: 100%;
-  padding: 14px;
-  background: var(--accent);
-  color: var(--ink);
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: 'Noto Sans SC', sans-serif;
-  transition: all 0.25s;
-  margin-top: 0.5rem;
-}
-
-.form-submit:hover {
-  background: var(--accent2);
-  box-shadow: 0 8px 30px rgba(232,168,62,0.4);
-  transform: translateY(-2px);
+  overflow-wrap: anywhere;
 }
 
 /* ========== FOOTER ========== */
@@ -1178,84 +1134,350 @@ footer {
   color: var(--white);
   font-size: 1.4rem;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  line-height: 1;
+}
+
+.mobile-menu-btn[aria-expanded="true"] {
+  color: var(--accent);
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu-backdrop {
+  display: none;
 }
 
 @media (max-width: 900px) {
+  nav {
+    height: 64px;
+    padding: 0 5vw;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 104px 5vw 72px;
+  }
+
   .hero-visual { display: none; }
   .hero-content { max-width: 100%; }
-  .hero h1 { font-size: 2.6rem; }
+  .hero h1 { font-size: clamp(2.35rem, 10vw, 3.4rem); }
+  .hero p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
 
-  .services-header { grid-template-columns: 1fr; }
-  .filter-tabs { justify-content: flex-start; }
+  .services-header {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-tabs {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0 -5vw;
+    padding: 0 5vw 0.4rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-tabs::-webkit-scrollbar { display: none; }
+
+  .filter-tab {
+    flex: 0 0 auto;
+    min-height: 38px;
+  }
+
+  .services-grid,
+  .audience-grid,
+  .cases-grid,
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2.2rem;
+  }
 
   .process-steps {
     grid-template-columns: 1fr 1fr;
+    margin-top: 2.2rem;
   }
 
   .process-steps::before { display: none; }
 
-  .form-row { grid-template-columns: 1fr; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 640px) {
   .nav-links { display: none; }
   .mobile-menu-btn { display: block; }
 
-  section { padding: 70px 5vw; }
+  .mobile-menu {
+    position: fixed;
+    top: 64px;
+    left: 5vw;
+    right: 5vw;
+    z-index: 99;
+    display: none;
+    gap: 0.45rem;
+    padding: 0.75rem;
+    background: rgba(15, 25, 35, 0.98);
+    border: 1px solid rgba(232, 168, 62, 0.18);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.28);
+  }
+
+  .mobile-menu.open {
+    display: grid;
+  }
+
+  .mobile-menu button {
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.86);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .mobile-menu button:active {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .mobile-menu .mobile-menu-primary {
+    background: var(--accent);
+    color: var(--ink);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 64px 0 0;
+    z-index: 98;
+    display: none;
+    background: rgba(15, 25, 35, 0.38);
+  }
+
+  .mobile-menu-backdrop.open {
+    display: block;
+  }
+
+  section { padding: 64px 5vw; }
+
+  .hero {
+    padding-top: 94px;
+    padding-bottom: 58px;
+  }
+
+  .hero-badge {
+    margin-bottom: 1.4rem;
+    font-size: 0.72rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 12vw, 2.65rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 0.96rem;
+    line-height: 1.75;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 18px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .stat-num { font-size: 1.75rem; }
+  .stat-label { font-size: 0.72rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 10vw, 2.35rem);
+    line-height: 1.25;
+  }
+
+  .section-sub {
+    font-size: 0.94rem;
+    line-height: 1.75;
+  }
+
+  .service-card,
+  .audience-card,
+  .review-card {
+    padding: 1.35rem;
+    border-radius: 14px;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3,
+  .audience-card h3 {
+    font-size: 1.12rem;
+  }
+
+  .service-card p,
+  .audience-card p,
+  .case-card p,
+  .review-text {
+    font-size: 0.86rem;
+  }
+
+  .service-price {
+    margin-top: 1rem;
+  }
+
+  .case-visual {
+    height: 150px;
+    font-size: 2.4rem;
+  }
+
+  .case-body {
+    padding: 1.25rem;
+  }
+
+  .case-result {
+    align-items: flex-start;
+    padding: 0.7rem 0.85rem;
+  }
 
   .process-steps { grid-template-columns: 1fr; }
-  .hero-stats { gap: 1.5rem; }
 
-  .pricing-card.featured { transform: scale(1); }
+  .step {
+    padding: 1.25rem 0.5rem;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    column-gap: 1rem;
+    align-items: start;
+  }
+
+  .step-num {
+    width: 54px;
+    height: 54px;
+    font-size: 1.25rem;
+    margin: 0;
+    grid-row: span 2;
+  }
+
+  .step h3 { margin-top: 0.1rem; }
+
+  .quote-mark {
+    font-size: 3.8rem;
+    left: 1rem;
+  }
+
+  .stars {
+    position: static;
+    margin-bottom: 0.5rem;
+  }
+
+  #contact .section-sub {
+    margin-bottom: 2rem;
+  }
+
+  .contact-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-card,
+  .qr-card {
+    width: 100%;
+    min-width: 0;
+    padding: 1.5rem;
+  }
+
+  .qr-image {
+    width: min(220px, 72vw);
+    margin: 0 auto 1rem;
+  }
+
+  footer {
+    padding: 2.4rem 5vw 1.6rem;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-desc {
+    max-width: 100%;
+  }
+
+  .footer-links ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+  }
+
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ========== FLOATING CONTACT ========== */
-.float-contact {
-  position: fixed;
-  bottom: 2rem; right: 2rem;
-  z-index: 90;
-  display: flex; flex-direction: column; gap: 0.7rem;
-  align-items: flex-end;
+@media (max-width: 380px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .filter-tab { padding: 7px 13px; }
+  .service-card,
+  .audience-card,
+  .review-card,
+  .contact-card {
+    padding: 1.15rem;
+  }
+  .footer-links ul { grid-template-columns: 1fr; }
 }
 
-.float-btn {
-  background: var(--accent);
-  color: var(--ink);
-  border: none;
-  border-radius: 50px;
-  padding: 12px 20px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 8px 30px rgba(232,168,62,0.4);
-  display: flex; align-items: center; gap: 6px;
-  font-family: 'Noto Sans SC', sans-serif;
-  transition: all 0.25s;
-  text-decoration: none;
-}
-
-.float-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(232,168,62,0.5);
-}
-
-.float-icon-btn {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: var(--deep);
-  color: var(--accent);
-  border: 2px solid rgba(232,168,62,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  transition: all 0.25s;
-}
-
-.float-icon-btn:hover {
-  background: var(--mid);
-  border-color: var(--accent);
+@media (hover: none) {
+  .service-card:hover,
+  .audience-card:hover,
+  .case-card:hover,
+  .review-card:hover,
+  .contact-card:hover,
+  .step:hover .step-num {
+    transform: none;
+  }
 }
 
 </style>
@@ -1272,11 +1494,19 @@ footer {
     <li><a onclick="scrollTo('services')">服务项目</a></li>
     <li><a onclick="scrollTo('audience')">适合人群</a></li>
     <li><a onclick="scrollTo('cases')">服务案例</a></li>
-    <li><a onclick="scrollTo('pricing')">定价方案</a></li>
     <li><a onclick="scrollTo('contact')" class="nav-cta">立即咨询</a></li>
   </ul>
-  <button class="mobile-menu-btn" onclick="scrollTo('contact')">☰</button>
+  <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-controls="mobile-menu" aria-expanded="false" aria-label="打开手机菜单">☰</button>
 </nav>
+<div class="mobile-menu-backdrop" id="mobile-menu-backdrop" onclick="closeMobileMenu()"></div>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <button type="button" onclick="goMobileMenu('services')">服务项目</button>
+  <button type="button" class="mobile-menu-primary" onclick="goMobileMenu('contact')">立即咨询</button>
+  <button type="button" onclick="goMobileMenu('audience')">适合人群</button>
+  <button type="button" onclick="goMobileMenu('cases')">服务案例</button>
+  <button type="button" onclick="goMobileMenu('reviews')">用户评价</button>
+  <button type="button" onclick="goMobileMenu('process')">服务流程</button>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -1286,10 +1516,9 @@ footer {
   <div class="hero-content">
     <div class="hero-badge">✦ AI 辅助 · 人工审核 · 快速交付</div>
     <h1>让<em>文档难题</em><br>不再是难题</h1>
-    <p>专业的学术与职场文档服务平台。PDF转换、论文排版、录音转文字、翻译、图表设计——一站解决，省时省力。</p>
+    <p>专业的学术、职场与电商内容服务平台。PDF转换、论文排版、录音转文字、翻译、思维导图、电商服务——一站解决，省时省力。</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="scrollTo('services')">查看服务项目 →</button>
-      <button class="btn-secondary" onclick="scrollTo('contact')">免费咨询</button>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
@@ -1318,11 +1547,12 @@ footer {
         <span class="card-title">当前服务状态</span>
       </div>
       <div class="service-tags">
-        <span class="service-tag tag-blue">📄 PDF转Word</span>
+        <span class="service-tag tag-blue">📄 PDF/Excel/图片/PPT</span>
         <span class="service-tag tag-gold">✍️ 论文格式调整</span>
         <span class="service-tag tag-green">🎙️ 录音转文字</span>
         <span class="service-tag tag-rose">🌐 专业翻译</span>
-        <span class="service-tag tag-blue">🎨 图表设计</span>
+        <span class="service-tag tag-blue">🧠 思维导图</span>
+        <span class="service-tag tag-gold">🛒 电商服务</span>
       </div>
       <div class="progress-row">
         <div class="progress-label"><span>今日已完成</span><span>12 单</span></div>
@@ -1346,14 +1576,20 @@ footer {
     <div>
       <div class="section-label">服务项目</div>
       <h2 class="section-title">我们能帮你做什么</h2>
-      <p class="section-sub">覆盖学术、职场、求职全场景，AI 加速 + 人工把关，质量有保障。</p>
+      <p class="section-sub">覆盖学术、职场、电商、教育知识付费和数字化工具场景，AI 加速 + 人工把关，质量有保障。</p>
     </div>
     <div class="filter-tabs">
       <button class="filter-tab active" onclick="filterServices('all', this)">全部</button>
       <button class="filter-tab" onclick="filterServices('doc', this)">文档处理</button>
-      <button class="filter-tab" onclick="filterServices('audio', this)">音视频</button>
+      <button class="filter-tab" onclick="filterServices('ecommerce', this)">电商</button>
       <button class="filter-tab" onclick="filterServices('design', this)">设计排版</button>
+      <button class="filter-tab" onclick="filterServices('audio', this)">音视频</button>
       <button class="filter-tab" onclick="filterServices('lang', this)">语言翻译</button>
+      <button class="filter-tab" onclick="filterServices('education', this)">教育与知识付费</button>
+      <button class="filter-tab" onclick="filterServices('templates', this)">设计素材与模板</button>
+      <button class="filter-tab" onclick="filterServices('ai-tools', this)">AI与数字化工具</button>
+      <button class="filter-tab" onclick="filterServices('software', this)">软件与技术</button>
+      <button class="filter-tab" onclick="filterServices('ebooks', this)">电子书资源</button>
     </div>
   </div>
 
@@ -1361,13 +1597,14 @@ footer {
 
     <div class="service-card reveal" data-cat="doc">
       <div class="service-icon icon-blue">📄</div>
-      <h3>PDF 转 Word</h3>
-      <p>精准还原排版格式，表格、图片、公式一并处理，可编辑输出。支持中英文、扫描件OCR识别。</p>
+      <h3>PDF 转 Word、Excel、图片、PPT 等各类文件</h3>
+      <p>支持 PDF、Excel、图片、PPT 等各类文件转换与整理，尽量还原排版格式，表格、图片、公式一并处理。</p>
       <div class="service-tags-mini">
-        <span class="mini-tag">学术论文</span>
-        <span class="mini-tag">合同文件</span>
+        <span class="mini-tag">PDF转Word</span>
+        <span class="mini-tag">Excel处理</span>
+        <span class="mini-tag">图片文件</span>
+        <span class="mini-tag">PPT文件</span>
         <span class="mini-tag">扫描件</span>
-        <span class="mini-tag">多语言</span>
       </div>
       <div class="service-price">
         <div>
@@ -1392,6 +1629,63 @@ footer {
         <div>
           <div class="price-from">起价</div>
           <span class="price-num">¥49</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="doc">
+      <div class="service-icon icon-blue">📝</div>
+      <h3>Word 编辑排版</h3>
+      <p>Word 文档内容编辑、格式统一、目录页码、页眉页脚、表格图片排版，适合报告、合同、简历等材料。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">文档美化</span>
+        <span class="mini-tag">格式统一</span>
+        <span class="mini-tag">目录页码</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="doc">
+      <div class="service-icon icon-green">📊</div>
+      <h3>Excel 处理</h3>
+      <p>数据清洗、表格整理、公式设置、统计汇总与图表制作，让杂乱数据变成清晰可用的工作表。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">数据整理</span>
+        <span class="mini-tag">公式统计</span>
+        <span class="mini-tag">图表制作</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="doc">
+      <div class="service-icon icon-purple">📽️</div>
+      <h3>PPT 制作</h3>
+      <p>汇报、答辩、培训、路演 PPT 制作与优化，梳理结构、统一版式、提升页面视觉表达。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">汇报展示</span>
+        <span class="mini-tag">答辩课件</span>
+        <span class="mini-tag">版式优化</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
           <span class="price-unit"> / 份</span>
         </div>
         <div class="card-arrow">→</div>
@@ -1430,7 +1724,7 @@ footer {
       <div class="service-price">
         <div>
           <div class="price-from">起价</div>
-          <span class="price-num">¥0.12</span>
+          <span class="price-num">¥0.1</span>
           <span class="price-unit"> / 字</span>
         </div>
         <div class="card-arrow">→</div>
@@ -1438,19 +1732,76 @@ footer {
     </div>
 
     <div class="service-card reveal" data-cat="design">
-      <div class="service-icon icon-gold">🎨</div>
-      <h3>图表 & 作图</h3>
-      <p>数据可视化图表、论文配图、信息图、流程图、PPT美化。专业设计风格，符合学术规范。</p>
+      <div class="service-icon icon-gold">🧠</div>
+      <h3>思维导图</h3>
+      <p>课程笔记、读书笔记、论文框架、汇报提纲整理成清晰的思维导图，支持结构梳理与版式美化。</p>
       <div class="service-tags-mini">
-        <span class="mini-tag">数据图表</span>
-        <span class="mini-tag">PPT美化</span>
-        <span class="mini-tag">论文配图</span>
+        <span class="mini-tag">知识梳理</span>
+        <span class="mini-tag">论文框架</span>
+        <span class="mini-tag">汇报提纲</span>
       </div>
       <div class="service-price">
         <div>
           <div class="price-from">起价</div>
-          <span class="price-num">¥29</span>
-          <span class="price-unit"> / 图</span>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="ecommerce">
+      <div class="service-icon icon-blue">🛒</div>
+      <h3>亚马逊 Listing 编写</h3>
+      <p>根据商品卖点、关键词和目标市场，撰写标题、五点描述、长描述与搜索词，提升页面表达质量。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">标题优化</span>
+        <span class="mini-tag">五点描述</span>
+        <span class="mini-tag">关键词</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥19.9</span>
+          <span class="price-unit"> / 款</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="ecommerce">
+      <div class="service-icon icon-gold">🖼️</div>
+      <h3>商品图 & 详情图制作</h3>
+      <p>商品主图、卖点图、详情页长图制作与优化，突出产品优势，适配电商平台展示规范。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">主图优化</span>
+        <span class="mini-tag">卖点图</span>
+        <span class="mini-tag">详情页</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥19.9</span>
+          <span class="price-unit"> / 张</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="ecommerce">
+      <div class="service-icon icon-green">📦</div>
+      <h3>电商运营包</h3>
+      <p>店铺日常运营资料整理、活动文案、商品信息优化、上新资料准备等，按需求灵活组合处理。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">运营资料</span>
+        <span class="mini-tag">活动文案</span>
+        <span class="mini-tag">上新整理</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 份</span>
         </div>
         <div class="card-arrow">→</div>
       </div>
@@ -1475,6 +1826,179 @@ footer {
       </div>
     </div>
 
+    <div class="service-card reveal" data-cat="audio">
+      <div class="service-icon icon-green">⬇️</div>
+      <h3>视频下载</h3>
+      <p>按链接或素材需求下载视频文件，整理清晰命名，适合课程、会议、素材备份等常见场景。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">链接下载</span>
+        <span class="mini-tag">素材整理</span>
+        <span class="mini-tag">文件命名</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥4.9</span>
+          <span class="price-unit"> / 个</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="audio">
+      <div class="service-icon icon-gold">📝</div>
+      <h3>视频转文字</h3>
+      <p>将视频内容转成文字稿，支持课程、访谈、会议、短视频等内容，便于后续整理和引用。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">课程视频</span>
+        <span class="mini-tag">会议记录</span>
+        <span class="mini-tag">文字稿</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 个</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="audio">
+      <div class="service-icon icon-purple">📌</div>
+      <h3>视频内容总结</h3>
+      <p>提炼视频核心观点、重点段落和行动清单，输出结构化摘要，帮助快速掌握内容重点。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">重点提炼</span>
+        <span class="mini-tag">结构摘要</span>
+        <span class="mini-tag">行动清单</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 个</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="education">
+      <div class="service-icon icon-gold">🎓</div>
+      <h3>教育与知识付费</h3>
+      <p>课程大纲、训练营资料、英语学习资料、讲义课件、社群交付文档整理，适合学习资料和知识付费产品快速打磨上线。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">课程大纲</span>
+        <span class="mini-tag">训练营资料</span>
+        <span class="mini-tag">英语学习资料</span>
+        <span class="mini-tag">讲义课件</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="templates">
+      <div class="service-icon icon-blue">🧩</div>
+      <h3>设计素材与模板</h3>
+      <p>海报、封面、详情页、简历、PPT、社媒图模板整理与定制，统一风格并方便复用。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">PPT模板</span>
+        <span class="mini-tag">社媒素材</span>
+        <span class="mini-tag">详情页模板</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 套</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="ai-tools">
+      <div class="service-icon icon-purple">💬</div>
+      <h3>AI 代问</h3>
+      <p>ChatGPT、Gemini、Claude 等 AI 工具代问，适合临时提问、内容润色、方案整理和资料查询。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">ChatGPT</span>
+        <span class="mini-tag">Gemini</span>
+        <span class="mini-tag">Claude</span>
+        <span class="mini-tag">代问整理</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥1</span>
+          <span class="price-unit"> / 次</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="ai-tools">
+      <div class="service-icon icon-purple">🤖</div>
+      <h3>AI与数字化工具</h3>
+      <p>AI 提示词、自动化表格、内容生成流程、办公提效小工具设计，让重复工作更省时间。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">提示词</span>
+        <span class="mini-tag">自动化表格</span>
+        <span class="mini-tag">办公提效</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥9.9</span>
+          <span class="price-unit"> / 个</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="software">
+      <div class="service-icon icon-green">💻</div>
+      <h3>软件与技术</h3>
+      <p>软件安装配置、网站基础修改、表单接入、工具使用指导和技术文档整理，按实际需求处理。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">软件配置</span>
+        <span class="mini-tag">网站修改</span>
+        <span class="mini-tag">技术文档</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥19.9</span>
+          <span class="price-unit"> / 次</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" data-cat="ebooks">
+      <div class="service-icon icon-gold">📚</div>
+      <h3>电子书资源</h3>
+      <p>电子书、资料包、学习资源检索与整理，按主题归类命名，方便学习、收藏和后续查找。</p>
+      <div class="service-tags-mini">
+        <span class="mini-tag">电子书</span>
+        <span class="mini-tag">资料包</span>
+        <span class="mini-tag">分类整理</span>
+      </div>
+      <div class="service-price">
+        <div>
+          <div class="price-from">起价</div>
+          <span class="price-num">¥2.99</span>
+          <span class="price-unit"> / 份</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1482,7 +2006,7 @@ footer {
 <section id="audience">
   <div class="section-label">适合人群</div>
   <h2 class="section-title">为每种需求量身定制</h2>
-  <p class="section-sub">无论你是在写论文、准备简历还是处理工作文件，我们都有对应的解决方案。</p>
+  <p class="section-sub">无论你是在写论文、准备简历、经营店铺、带娃学习还是做知识产品，我们都有对应的解决方案。</p>
 
   <div class="audience-grid">
     <div class="audience-card reveal">
@@ -1491,19 +2015,19 @@ footer {
       <p>本科毕业论文、研究生期刊投稿、课程作业格式整理，论文季不再焦虑。</p>
       <div class="aud-services">
         <span class="aud-service">论文格式调整</span>
-        <span class="aud-service">PDF转Word</span>
+        <span class="aud-service">PDF/Excel/图片/PPT</span>
         <span class="aud-service">翻译润色</span>
-        <span class="aud-service">数据图表制作</span>
+        <span class="aud-service">思维导图</span>
       </div>
     </div>
 
     <div class="audience-card reveal">
       <span class="aud-emoji">💼</span>
       <h3>职场人士</h3>
-      <p>会议纪要整理、报告翻译、PPT美化、合同文件格式转换，提升工作效率。</p>
+      <p>会议纪要整理、报告翻译、PPT制作、合同文件格式转换，提升工作效率。</p>
       <div class="aud-services">
         <span class="aud-service">录音转文字</span>
-        <span class="aud-service">PPT设计美化</span>
+        <span class="aud-service">PPT制作</span>
         <span class="aud-service">商务翻译</span>
         <span class="aud-service">视频字幕</span>
       </div>
@@ -1528,7 +2052,31 @@ footer {
         <span class="aud-service">课件制作</span>
         <span class="aud-service">录音转文字</span>
         <span class="aud-service">文档整理</span>
-        <span class="aud-service">图表设计</span>
+        <span class="aud-service">思维导图</span>
+      </div>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="aud-emoji">🛒</span>
+      <h3>电商人群</h3>
+      <p>亚马逊、独立站、淘宝和小红书经营者，商品内容、图片和运营资料可以集中处理。</p>
+      <div class="aud-services">
+        <span class="aud-service">Listing 编写</span>
+        <span class="aud-service">商品图详情图</span>
+        <span class="aud-service">活动文案</span>
+        <span class="aud-service">电商运营包</span>
+      </div>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="aud-emoji">🌷</span>
+      <h3>宝妈</h3>
+      <p>带娃学习、家庭资料整理、副业素材准备、电子书资源收集，减少琐碎整理时间。</p>
+      <div class="aud-services">
+        <span class="aud-service">电子书资源</span>
+        <span class="aud-service">学习资料整理</span>
+        <span class="aud-service">设计模板</span>
+        <span class="aud-service">知识付费资料</span>
       </div>
     </div>
   </div>
@@ -1537,63 +2085,177 @@ footer {
 <!-- CASES -->
 <section id="cases">
   <div class="section-label">服务案例</div>
-  <h2 class="section-title">真实案例，看得见的效果</h2>
-  <p class="section-sub">每一单都认真对待，以下是部分匿名处理后的真实客户案例。</p>
+  <h2 class="section-title">按产品板块呈现真实案例</h2>
+  <p class="section-sub">每个案例对应一个产品板块，方便你快速判断自己的需求适合哪类服务。</p>
 
   <div class="cases-grid">
     <div class="case-card reveal">
       <div class="case-visual cv-blue">
-        <span>📄 → 📝</span>
+        <span>📄 → 📊</span>
         <div class="before-after">
-          <span class="ba-label ba-before">扫描PDF</span>
-          <span class="ba-label ba-after">可编辑Word</span>
+          <span class="ba-label ba-before">多格式文件</span>
+          <span class="ba-label ba-after">统一整理</span>
         </div>
       </div>
       <div class="case-body">
-        <div class="case-tag">文档转换</div>
-        <h3>80页扫描版合同 → 可编辑Word</h3>
-        <p>客户提供年代久远的扫描合同，需要编辑修改。通过OCR识别 + 人工校对，完整还原全部内容，包含表格与签名框。</p>
+        <div class="case-tag">文档处理</div>
+        <h3>PDF、Excel、图片资料统一整理</h3>
+        <p>客户提供扫描 PDF、图片表格和 Excel 明细，需要汇总成可编辑文档。处理后输出 Word 与 Excel 两套版本，便于后续修改和归档。</p>
         <div class="case-result">
           <span class="result-icon">⏱️</span>
-          <span class="result-text">8小时完成 · 准确率 99.2%</span>
+          <span class="result-text">当天交付 · 格式统一</span>
         </div>
       </div>
     </div>
 
     <div class="case-card reveal">
       <div class="case-visual cv-gold">
-        <span>📑 ✨</span>
+        <span>🛒 ✨</span>
         <div class="before-after">
-          <span class="ba-label ba-before">格式混乱</span>
-          <span class="ba-label ba-after">标准排版</span>
+          <span class="ba-label ba-before">商品卖点散</span>
+          <span class="ba-label ba-after">Listing成稿</span>
         </div>
       </div>
       <div class="case-body">
-        <div class="case-tag">论文排版</div>
-        <h3>研究生毕业论文格式全面调整</h3>
-        <p>82页毕业论文，按学校最新要求重新调整目录、页眉页脚、参考文献格式、图表编号，一次性通过审核。</p>
+        <div class="case-tag">电商</div>
+        <h3>亚马逊新品 Listing 与详情图文案</h3>
+        <p>根据商品参数、竞品卖点和目标关键词，整理标题、五点描述、长描述，并提炼详情图文案，方便设计师直接作图。</p>
         <div class="case-result">
-          <span class="result-icon">✅</span>
-          <span class="result-text">次日交付 · 一次性审核通过</span>
+          <span class="result-icon">🎯</span>
+          <span class="result-text">1款商品 · 文案结构完整</span>
         </div>
       </div>
     </div>
 
     <div class="case-card reveal">
       <div class="case-visual cv-green">
-        <span>🎙️ → 📋</span>
+        <span>🧠 → 🗺️</span>
         <div class="before-after">
-          <span class="ba-label ba-before">3小时录音</span>
-          <span class="ba-label ba-after">整理文档</span>
+          <span class="ba-label ba-before">笔记零散</span>
+          <span class="ba-label ba-after">导图清晰</span>
         </div>
       </div>
       <div class="case-body">
-        <div class="case-tag">录音转写</div>
-        <h3>学术访谈录音 → 结构化文字稿</h3>
-        <p>3小时、4人参与的学术访谈录音，区分发言人并整理成结构化文档，便于后续分析与引用。</p>
+        <div class="case-tag">设计排版</div>
+        <h3>读书笔记整理成思维导图</h3>
+        <p>把 2 万字读书笔记拆成章节、观点、案例和行动建议，输出思维导图结构，适合复盘、分享和课程讲解。</p>
         <div class="case-result">
-          <span class="result-icon">🎯</span>
-          <span class="result-text">24小时内交付 · 含时间轴标注</span>
+          <span class="result-icon">✅</span>
+          <span class="result-text">层级清楚 · 可继续编辑</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-blue">
+        <span>🎬 → 📝</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">长视频</span>
+          <span class="ba-label ba-after">文字总结</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">音视频</div>
+        <h3>课程视频转文字并提炼重点</h3>
+        <p>将 90 分钟课程视频整理成文字稿、知识点摘要和行动清单，方便学员二次复习，也方便老师做课程资料沉淀。</p>
+        <div class="case-result">
+          <span class="result-icon">📌</span>
+          <span class="result-text">文字稿 + 总结双交付</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-gold">
+        <span>🎓 📦</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">课程想法</span>
+          <span class="ba-label ba-after">资料包</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">教育与知识付费</div>
+        <h3>7天训练营交付资料整理</h3>
+        <p>把课程大纲、每日作业、社群话术和讲义内容整理成训练营资料包，方便发布到社群和知识店铺。</p>
+        <div class="case-result">
+          <span class="result-icon">📚</span>
+          <span class="result-text">大纲、讲义、作业一次配齐</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-green">
+        <span>🧩 ✨</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">素材分散</span>
+          <span class="ba-label ba-after">模板成套</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">设计素材与模板</div>
+        <h3>宝妈副业社媒模板整理</h3>
+        <p>围绕育儿分享和好物推荐，整理封面、正文、详情页和海报模板，让后续发内容时只需替换文字和图片。</p>
+        <div class="case-result">
+          <span class="result-icon">🌷</span>
+          <span class="result-text">12套模板 · 可复用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-blue">
+        <span>🤖 ⚙️</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">重复录入</span>
+          <span class="ba-label ba-after">自动表格</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">AI与数字化工具</div>
+        <h3>订单信息自动整理表</h3>
+        <p>把重复复制、分类、汇总的订单整理动作改成可复用表格流程，配套提示词和操作说明，减少日常重复劳动。</p>
+        <div class="case-result">
+          <span class="result-icon">⚡</span>
+          <span class="result-text">流程固化 · 可持续使用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-gold">
+        <span>💻 🛠️</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">不会配置</span>
+          <span class="ba-label ba-after">可运行</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">软件与技术</div>
+        <h3>静态网站内容修改与发布说明</h3>
+        <p>把单页网站的栏目、联系方式和图片资源整理清楚，附本地预览和 Cloudflare Pages 发布说明，方便后续自行维护。</p>
+        <div class="case-result">
+          <span class="result-icon">🛠️</span>
+          <span class="result-text">页面可预览 · 步骤清楚</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-visual cv-gold">
+        <span>📚 🔎</span>
+        <div class="before-after">
+          <span class="ba-label ba-before">资料难找</span>
+          <span class="ba-label ba-after">电子书包</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">电子书资源</div>
+        <h3>亲子教育电子书资源整理</h3>
+        <p>按年龄段、主题和阅读难度整理电子书清单与资料包，附简单目录说明，方便家庭学习和长期收藏。</p>
+        <div class="case-result">
+          <span class="result-icon">✅</span>
+          <span class="result-text">分类清楚 · 快速查找</span>
         </div>
       </div>
     </div>
@@ -1611,7 +2273,7 @@ footer {
     <div class="step reveal">
       <div class="step-num">1</div>
       <h3>提交需求</h3>
-      <p>填写表单或微信联系，说明文件类型和具体要求</p>
+      <p>通过微信或邮件联系，说明文件类型和具体要求</p>
     </div>
     <div class="step reveal">
       <div class="step-num">2</div>
@@ -1631,157 +2293,114 @@ footer {
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-  <div>
-    <div class="section-label">定价方案</div>
-    <h2 class="section-title">透明定价，无隐藏收费</h2>
-    <p class="section-sub">单次付费或套餐均可，量大另议。所有方案均含至少一次免费修改。</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <div class="plan-name">基础服务</div>
-      <div class="plan-price">
-        <span class="plan-num">¥15</span>
-        <span class="plan-unit">起</span>
-      </div>
-      <p class="plan-desc">单次按需付费，适合偶尔有文档处理需求的用户</p>
-      <ul class="plan-features">
-        <li><span class="check">✓</span>PDF转Word（每份）</li>
-        <li><span class="check">✓</span>基础格式整理</li>
-        <li><span class="check">✓</span>1次免费修改</li>
-        <li><span class="check">✓</span>48小时内交付</li>
-        <li><span class="check">✓</span>微信沟通</li>
-      </ul>
-      <button class="btn-plan btn-plan-outline" onclick="scrollTo('contact')">按需咨询</button>
-    </div>
-
-    <div class="pricing-card featured reveal">
-      <div class="featured-badge">🔥 最受欢迎</div>
-      <div class="plan-name">论文季套餐</div>
-      <div class="plan-price">
-        <span class="plan-num">¥199</span>
-        <span class="plan-unit">/ 套</span>
-      </div>
-      <p class="plan-desc">专为毕业季设计，一次搞定论文相关所有文档需求</p>
-      <ul class="plan-features">
-        <li><span class="check">✓</span>论文格式调整（一次）</li>
-        <li><span class="check">✓</span>PDF转Word（2份）</li>
-        <li><span class="check">✓</span>参考文献整理</li>
-        <li><span class="check">✓</span>图表制作（3张）</li>
-        <li><span class="check">✓</span>无限次修改至满意</li>
-        <li><span class="check">✓</span>优先24h内交付</li>
-        <li><span class="check">✓</span>专属客服</li>
-      </ul>
-      <button class="btn-plan btn-plan-gold" onclick="scrollTo('contact')">立即选择</button>
-    </div>
-
-    <div class="pricing-card reveal">
-      <div class="plan-name">职场月度包</div>
-      <div class="plan-price">
-        <span class="plan-num">¥299</span>
-        <span class="plan-unit">/ 月</span>
-      </div>
-      <p class="plan-desc">每月固定额度，适合有持续文档处理需求的职场人士</p>
-      <ul class="plan-features">
-        <li><span class="check">✓</span>录音转文字（5小时）</li>
-        <li><span class="check">✓</span>翻译（3000字）</li>
-        <li><span class="check">✓</span>文档转换（5份）</li>
-        <li><span class="check">✓</span>图表设计（2张）</li>
-        <li><span class="check">✓</span>未使用额度可滚存</li>
-        <li><span class="check">✓</span>24h响应</li>
-      </ul>
-      <button class="btn-plan btn-plan-outline" onclick="scrollTo('contact')">咨询定制</button>
-    </div>
-  </div>
-
-  <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:var(--muted);">
-    以上为参考起价，实际价格根据具体需求报价 · 大批量需求请联系洽谈
-  </p>
-</section>
 
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="section-label">用户好评</div>
-  <h2 class="section-title">他们说的</h2>
-  <p class="section-sub">来自真实客户的反馈，让你放心下单。</p>
+  <h2 class="section-title">不同产品用户怎么评价</h2>
+  <p class="section-sub">按产品板块重新整理的反馈，覆盖文档、电商、教育、模板、AI工具和技术支持。</p>
 
   <div class="reviews-grid">
     <div class="review-card reveal">
       <div class="quote-mark">"</div>
       <div class="stars">★★★★★</div>
-      <p class="review-text">毕业论文交前一天才发现格式不对，联系后当晚就给我处理好了！目录、页眉、参考文献全部按学校模板来，老师直接通过，太感谢了。</p>
-      <div class="review-author">
-        <div class="author-avatar">林</div>
-        <div>
-          <div class="author-name">林同学</div>
-          <div class="author-info">研究生 · 论文格式调整</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">录音转写很准确，2小时的采访录音帮我整理成了结构化文档还区分了发言人，自己弄不知道要花多少时间，价格也很合理。</p>
-      <div class="review-author">
-        <div class="author-avatar">张</div>
-        <div>
-          <div class="author-name">张老师</div>
-          <div class="author-info">高校教师 · 录音转文字</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">英文简历翻译质量很高，不是那种机翻感，用词很地道。面试前最后一刻找到他们，当天就交付了，简历很加分。</p>
-      <div class="review-author">
-        <div class="author-avatar">王</div>
-        <div>
-          <div class="author-name">王同学</div>
-          <div class="author-info">求职者 · 简历翻译</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">数据图表做得很专业，样式符合SCI论文要求，导师一次性就通过了。沟通也很顺畅，提出修改意见能很快响应。</p>
-      <div class="review-author">
-        <div class="author-avatar">陈</div>
-        <div>
-          <div class="author-name">陈同学</div>
-          <div class="author-info">博士生 · 图表设计</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">月度包很划算，每个月的会议录音和文件翻译都交给他们，省了我们团队很多时间，专注做更重要的事。</p>
-      <div class="review-author">
-        <div class="author-avatar">刘</div>
-        <div>
-          <div class="author-name">刘经理</div>
-          <div class="author-info">职场用户 · 月度包</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card reveal">
-      <div class="quote-mark">"</div>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">扫描件转Word真的没想到能做得这么准，80多页的古旧合同，字迹模糊的地方也尽量识别出来了，只有几个字需要我手动核对。</p>
+      <p class="review-text">PDF、图片和 Excel 混在一起的资料被整理成了清楚的 Word 和表格，命名也规范了，交给同事后不用再反复解释。</p>
       <div class="review-author">
         <div class="author-avatar">赵</div>
         <div>
           <div class="author-name">赵律师</div>
-          <div class="author-info">法律从业者 · PDF转Word</div>
+          <div class="author-info">法律从业者 · 文档处理</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">亚马逊 Listing 写得比我自己顺很多，标题、五点、关键词都按卖点展开，详情图文案也能直接给设计用。</p>
+      <div class="review-author">
+        <div class="author-avatar">周</div>
+        <div>
+          <div class="author-name">周老板</div>
+          <div class="author-info">跨境卖家 · 电商</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">训练营的讲义、作业和社群话术都整理好了，原来只是零散想法，现在看起来像一个完整的知识付费产品。</p>
+      <div class="review-author">
+        <div class="author-avatar">何</div>
+        <div>
+          <div class="author-name">何老师</div>
+          <div class="author-info">课程主理人 · 教育与知识付费</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">给我做的宝妈副业模板很实用，封面、正文、海报都有统一风格，后面我自己替换文字就能继续发。</p>
+      <div class="review-author">
+        <div class="author-avatar">吴</div>
+        <div>
+          <div class="author-name">吴女士</div>
+          <div class="author-info">宝妈 · 设计素材与模板</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">帮我把常用提示词和表格流程整理成固定模板，每次写商品文案和整理数据都快很多，不用从零开始。</p>
+      <div class="review-author">
+        <div class="author-avatar">刘</div>
+        <div>
+          <div class="author-name">刘经理</div>
+          <div class="author-info">运营负责人 · AI与数字化工具</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">视频总结比我自己看完整节课省时间，重点、时间线和行动清单都列出来了，复习的时候直接看文档就行。</p>
+      <div class="review-author">
+        <div class="author-avatar">张</div>
+        <div>
+          <div class="author-name">张同学</div>
+          <div class="author-info">在校学生 · 视频内容总结</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">电子书资源按主题和年龄段整理好了，文件名也很清楚，给孩子找资料的时候不用一堆文件里翻来翻去。</p>
+      <div class="review-author">
+        <div class="author-avatar">孙</div>
+        <div>
+          <div class="author-name">孙女士</div>
+          <div class="author-info">宝妈 · 电子书资源</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">网站上的文字、二维码和联系信息都帮我改好了，还把发布步骤写清楚了，后面我自己也知道怎么更新。</p>
+      <div class="review-author">
+        <div class="author-avatar">陈</div>
+        <div>
+          <div class="author-name">陈先生</div>
+          <div class="author-info">个体经营者 · 软件与技术</div>
         </div>
       </div>
     </div>
@@ -1792,56 +2411,29 @@ footer {
 <section id="contact">
   <div class="section-label" style="justify-content:center;">开始合作</div>
   <h2 class="section-title">准备好了？来聊聊</h2>
-  <p class="section-sub">描述你的需求，30分钟内回复报价。首次咨询免费。</p>
+  <p class="section-sub">通过微信或邮件描述你的需求，30分钟内回复报价。</p>
 
   <div class="contact-options" style="position:relative;z-index:1">
-    <a class="contact-card">
-      <span class="cc-icon">💬</span>
+    <a class="contact-card qr-card">
+      <img class="qr-image" src="assets/wechat-qi.jpg" alt="微信二维码 七">
       <div class="cc-label">微信咨询</div>
-      <div class="cc-value">扫码添加</div>
+      <div class="cc-value">七</div>
     </a>
-    <a class="contact-card" href="mailto:hello@zhifu.example.com">
+    <a class="contact-card qr-card">
+      <img class="qr-image" src="assets/wechat-beiying.jpg" alt="微信二维码 背影">
+      <div class="cc-label">微信咨询</div>
+      <div class="cc-value">背影</div>
+    </a>
+    <a class="contact-card" href="mailto:1831775128@qq.com">
       <span class="cc-icon">📧</span>
       <div class="cc-label">邮件联系</div>
-      <div class="cc-value">hello@zhifu.com</div>
+      <div class="cc-value">1831775128@qq.com</div>
     </a>
     <a class="contact-card">
       <span class="cc-icon">⏰</span>
       <div class="cc-label">响应时间</div>
-      <div class="cc-value">工作日 9:00-22:00</div>
+      <div class="cc-value">7:00-23:00</div>
     </a>
-  </div>
-
-  <div class="form-section reveal">
-    <h3 style="color:var(--white);font-family:'Noto Serif SC',serif;font-size:1.3rem;margin-bottom:1.5rem;">填写需求，快速报价</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label>你的称呼</label>
-        <input type="text" placeholder="例：小李同学">
-      </div>
-      <div class="form-group">
-        <label>联系方式</label>
-        <input type="text" placeholder="微信号 / 邮箱">
-      </div>
-    </div>
-    <div class="form-group">
-      <label>需要的服务</label>
-      <select>
-        <option value="">请选择服务类型</option>
-        <option>PDF 转 Word</option>
-        <option>论文格式调整</option>
-        <option>录音转文字</option>
-        <option>专业翻译</option>
-        <option>图表 & 作图</option>
-        <option>视频字幕制作</option>
-        <option>组合 / 其他</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>需求描述</label>
-      <textarea placeholder="请简单描述你的文件情况（如：毕业论文80页、需要按学校模板调整格式，希望3天内完成）"></textarea>
-    </div>
-    <button class="form-submit" onclick="handleSubmit()">提交需求，等待报价 →</button>
   </div>
 </section>
 
@@ -1852,17 +2444,42 @@ footer {
       <a href="#" class="logo" style="margin-bottom:0.8rem;display:flex;">
         <span class="logo-dot"></span>X
       </a>
-      <p class="footer-desc">专业的学术与职场文档服务，AI辅助 + 人工把关，让每一份文件都值得信赖。</p>
+      <p class="footer-desc">覆盖文档、电商、教育知识付费、数字化工具和电子书资源，AI辅助 + 人工把关。</p>
     </div>
 
     <div class="footer-links">
-      <h4>服务</h4>
+      <h4>文档与内容</h4>
       <ul>
-        <li><a onclick="scrollTo('services')">PDF转Word</a></li>
+        <li><a onclick="scrollTo('services')">PDF/Excel/图片/PPT</a></li>
+        <li><a onclick="scrollTo('services')">Word 编辑排版</a></li>
+        <li><a onclick="scrollTo('services')">Excel 处理</a></li>
+        <li><a onclick="scrollTo('services')">PPT 制作</a></li>
         <li><a onclick="scrollTo('services')">论文格式调整</a></li>
-        <li><a onclick="scrollTo('services')">录音转文字</a></li>
         <li><a onclick="scrollTo('services')">专业翻译</a></li>
-        <li><a onclick="scrollTo('services')">图表设计</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>电商与设计</h4>
+      <ul>
+        <li><a onclick="scrollTo('services')">亚马逊 Listing 编写</a></li>
+        <li><a onclick="scrollTo('services')">商品图 & 详情图制作</a></li>
+        <li><a onclick="scrollTo('services')">电商运营包</a></li>
+        <li><a onclick="scrollTo('services')">思维导图</a></li>
+        <li><a onclick="scrollTo('services')">设计素材与模板</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>工具与资源</h4>
+      <ul>
+        <li><a onclick="scrollTo('services')">录音转文字</a></li>
+        <li><a onclick="scrollTo('services')">视频下载 / 转文字 / 总结</a></li>
+        <li><a onclick="scrollTo('services')">教育与知识付费</a></li>
+        <li><a onclick="scrollTo('services')">AI 代问</a></li>
+        <li><a onclick="scrollTo('services')">AI与数字化工具</a></li>
+        <li><a onclick="scrollTo('services')">软件与技术</a></li>
+        <li><a onclick="scrollTo('services')">电子书资源</a></li>
       </ul>
     </div>
 
@@ -1870,7 +2487,6 @@ footer {
       <h4>了解更多</h4>
       <ul>
         <li><a onclick="scrollTo('cases')">服务案例</a></li>
-        <li><a onclick="scrollTo('pricing')">定价方案</a></li>
         <li><a onclick="scrollTo('reviews')">用户评价</a></li>
         <li><a onclick="scrollTo('process')">服务流程</a></li>
       </ul>
@@ -1880,24 +2496,16 @@ footer {
       <h4>联系我们</h4>
       <ul>
         <li><a>微信：Marx2020625</a></li>
-        <li><a href="mailto:hello@zhifu.com">邮件：1831775128@qq.com</a></li>
-        <li><a>工作时间：9:00-22:00</a></li>
+        <li><a href="mailto:1831775128@qq.com">邮件：1831775128@qq.com</a></li>
+        <li><a>工作时间：7:00-23:00</a></li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p class="footer-copy">© 2024 X  · 保留所有权利</p>
-    <p class="footer-icp">粤ICP备XXXXXXXX号</p>
+    <p class="footer-copy">© 2014 X  · 保留所有权利</p>
   </div>
 </footer>
-
-<!-- FLOATING BUTTON -->
-<div class="float-contact">
-  <a class="float-btn" onclick="scrollTo('contact')">
-    💬 免费咨询
-  </a>
-</div>
 
 <script>
 // Smooth scroll
@@ -1906,9 +2514,44 @@ function scrollTo(id) {
   if (el) {
     const offset = 68;
     const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    window.scroll({ top, behavior: 'smooth' });
   }
 }
+
+function setMobileMenu(open) {
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const btn = document.querySelector('.mobile-menu-btn');
+  if (!menu || !backdrop || !btn) return;
+
+  menu.classList.toggle('open', open);
+  backdrop.classList.toggle('open', open);
+  menu.setAttribute('aria-hidden', String(!open));
+  btn.setAttribute('aria-expanded', String(open));
+  btn.textContent = open ? '×' : '☰';
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  setMobileMenu(!menu?.classList.contains('open'));
+}
+
+function closeMobileMenu() {
+  setMobileMenu(false);
+}
+
+function goMobileMenu(id) {
+  closeMobileMenu();
+  scrollTo(id);
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMobileMenu();
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 640) closeMobileMenu();
+});
 
 // Reveal on scroll
 const observer = new IntersectionObserver((entries) => {
@@ -1938,32 +2581,6 @@ function filterServices(cat, btn) {
   });
 }
 
-// Form submit
-function handleSubmit() {
-  const btn = document.querySelector('.form-submit');
-  btn.textContent = '✅ 已提交！我们会尽快联系你';
-  btn.style.background = '#28c840';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = '提交需求，等待报价 →';
-    btn.style.background = '';
-    btn.disabled = false;
-  }, 4000);
-}
-
-// Hide float btn near contact section
-window.addEventListener('scroll', () => {
-  const contact = document.getElementById('contact');
-  const float = document.querySelector('.float-contact');
-  const rect = contact.getBoundingClientRect();
-  if (rect.top < window.innerHeight && rect.bottom > 0) {
-    float.style.opacity = '0';
-    float.style.pointerEvents = 'none';
-  } else {
-    float.style.opacity = '1';
-    float.style.pointerEvents = 'auto';
-  }
-});
 </script>
 </body>
 </html>
